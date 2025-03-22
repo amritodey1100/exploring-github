@@ -1,12 +1,17 @@
 import React from "react";
+import "./Header.css";
+import { Link } from "react-router-dom";
 
 const Header = () => (
-  <header>
-    <h1>Navbar</h1>
-    <a href="/about">About</a>
-    <a href="/home">Home</a>
-    <a href="/contact">Contact us</a>
-  </header>
+  <div>
+    <nav>
+      <span>My Website</span>
+      <Link to="/">Home</Link>
+      <Link to="/user">Users</Link>
+      <Link to="/about">About</Link>
+      <Link to="/contact">Contact</Link>
+    </nav>
+  </div>
 );
 
 export default Header;
