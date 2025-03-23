@@ -7,6 +7,9 @@ import About from "./components/about/about.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Contact from "./components/Contact/Contact.jsx";
 import Users from "./components/Users/Users.jsx";
+import UserDetails from "./components/UserDetails/UserDetails.jsx";
+import Posts from "./components/Posts/Posts.jsx";
+import PostsDetails from "./components/PostsDetails/PostsDetails.jsx"; // Ensure PostsDetails is imported
 
 const router = createBrowserRouter([
   {
@@ -22,9 +25,26 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "/user",
+        path: "user",
         loader: () => fetch("https://jsonplaceholder.typicode.com/users"),
         element: <Users />,
+      },
+      {
+        path: "user/:userId",
+        loader: ({ params }) =>
+          fetch(`https://jsonplaceholder.typicode.com/users/${params.userId}`),
+        element: <UserDetails />,
+      },
+      {
+        path: "posts",
+        loader: () => fetch("https://jsonplaceholder.typicode.com/posts"),
+        element: <Posts />,
+      },
+      {
+        path: "posts/:postId", // Ensure the path matches the Link in Post component
+        loader: ({ params }) =>
+          fetch(`https://jsonplaceholder.typicode.com/posts/${params.postId}`),
+        element: <PostsDetails />,
       },
     ],
   },
